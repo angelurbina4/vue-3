@@ -15,6 +15,9 @@ export default {
       type: Number,
       default: 0,
       // required: true
+      validator(value) {
+        return value >= 0;
+      }
     }
   },
   // name: 'Counter'
