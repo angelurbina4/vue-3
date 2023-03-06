@@ -1,5 +1,5 @@
 <template>
-  <h2>Counter</h2>
+  <h2>{{ customTittle }}</h2>
   <p>{{ counter }} <sup>2</sup> = {{ squareCounter }}</p>
   <div>
     <button @click="increase">+</button>
@@ -9,10 +9,18 @@
 
 <script>
 export default {
+  props: {
+    title: String,
+    start: {
+      type: Number,
+      default: 0,
+      // required: true
+    }
+  },
   // name: 'Counter'
   data() {
     return {
-      counter: 5
+      counter: this.start
     }
   },
   // methods are not cached and re-evaluated every time they are called
@@ -31,6 +39,9 @@ export default {
   computed: { 
     squareCounter() {
       return this.counter * this.counter;
+    },
+    customTittle() {
+      return this.title ? this.title : 'Counter';
     }
   }
 }
