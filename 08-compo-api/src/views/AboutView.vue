@@ -3,6 +3,7 @@
     <h1>{{ title }}</h1>
     <button @click="changeTitle">change title</button>
   </div>
+
 </template>
 
 <script>
