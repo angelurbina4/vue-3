@@ -9,7 +9,7 @@
   </template>
 </template>
 <script>
-import { useRoute } from 'vue-router'
+import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import usePokemon  from '../composables/usePokemon'
 import { watch } from 'vue'
 
@@ -28,6 +28,12 @@ export default {
       () => searchPokemon(route.params.id)
     )
 
+
+    onBeforeRouteLeave(() => {
+      console.log('Saliendo de la ruta')
+      const answers = window.confirm('¿Estas seguro de salir?')
+      if (!answers) return false
+    })
 
     return {
       errorMessage,
