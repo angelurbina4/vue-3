@@ -15,20 +15,20 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 export default {
   name: 'HomeView',
   setup() {
 
     const ironman = ref({ name: 'Tony Stark', age: 45 })
-    const hulk = reactive({ name: 'Bruce Banner', age: 35 })
+    const hulk = ref({ name: 'Bruce Banner', age: 35 })
 
-    const ironmanIsAlive = reactive(true) // reactive no funciona con tipos primitivos
-    const hulkIsAlive = ref(true) // ref funciona con tipos primitivos
+    const ironmanIsAlive = ref(true)
+    const hulkIsAlive = ref(true)
 
     const changeStatus = () => {
-      // ironmanIsAlive.isAlive = false // reactive no funciona con tipos primitivos
+      ironmanIsAlive.value = false
       hulkIsAlive.value = false
     }
     
@@ -45,8 +45,8 @@ export default {
         ironman.value.age = 'Stark'
       },
       changeHulk: () => {
-        hulk.name = 'Bruce',
-        hulk.age = 'Banner'
+        hulk.value.name = 'Bruce',
+        hulk.value.age = 'Banner'
       }
     }
 
