@@ -10,31 +10,6 @@ import { ref, reactive } from "vue";
 const productStore = useProductStore();
 const cartStore = useCartStore();
 
-const history = reactive([]);
-const future = reactive([]);
-const doingHistory = ref(false);
-history.push(JSON.stringify(cartStore.$state));
-
-const redoUndo = (fromStack, toStack) => {
-  if (fromStack.length === 0) return;
-  doingHistory.value = true;
-  toStack.push(fromStack.pop());
-  cartStore.$state = JSON.parse(history.at(-1))
-  doingHistory.value = false;
-}
-const undo = () => {
-  return redoUndo(history, future)
-}
-const redo = () => {
-  return redoUndo(future, history)
-}
-cartStore.$subscribe((mutation, state) => {
-  if (!doingHistory.value) {
-    history.push(JSON.stringify(state));
-    future.splice(0, future.length);
-  }
-});
-
 cartStore.$onAction(({ name, store, args, after, onError }) => {
   if (name === "addItems") {
     after(() => {
