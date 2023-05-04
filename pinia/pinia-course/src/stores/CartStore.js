@@ -3,6 +3,7 @@ import { groupBy } from "lodash";
 import { useAuthUserStore } from "../components/AuthUserStore";
 
 export const useCartStore = defineStore("CartStore", {
+  historyEnabled: true,
   state: () => {
     return {
       items: [],
@@ -40,7 +41,7 @@ export const useCartStore = defineStore("CartStore", {
     setItemCount(item, count) {
       this.clearItem(item.name);
       this.addItems(count, item);
-    }
+    },
   },
 });
 
