@@ -22,6 +22,8 @@ export function piniaHistoryPlugin({ pinia, app, store, options }) {
     }
   });
   return {
+    history,
+    future,
     undo: () => {
       return redoUndo(history, future)
     },

@@ -17,9 +17,9 @@ pinia.use(piniaHistoryPlugin);
 
 // Init App
 createApp(App)
-  .use(pinia)
-  .use(FontAwesomePlugin)
   .component("AppButton", AppButton)
   .component("AppCountInput", AppCountInput)
   .component("AppModalOverlay", AppModalOverlay)
+  .use(pinia)
+  .use(FontAwesomePlugin)
   .mount("#app");
